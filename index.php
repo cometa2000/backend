@@ -1,20 +1,28 @@
 <?php
-    require_once realpath('../vendor/autoload.php');
-    $dotenv = Dotenv\Dotenv::createImmutable('../');
-    $dotenv->load();
 
-    
-    $host = $_ENV['DB_HOST'];
-    $database = $_ENV['DB_DATABASE'];
-    $username = $_ENV['DB_USERNAME'];
-    $password = $_ENV['DB_PASSWORD'];
-    $conexion = new mysqli($host, $username, $password, $database);
+    require_once realpath('./vendor/autoload.php');
+    require_once './app/config/Config.php';
 
-    if ($conexion->connect_error) {
-        die("Error de conexión: " . $conexion->connect_error);
-    } else{
-        echo "Conexión exitosa a la base de datos";
+    class Router {
+        private $config;
+
+        public function __construct() {
+            $this->config = new Config();
+        }
+
+        public function route() {
+            $view = isset($_REQUEST['view']) ? $_REQUEST['view'] : 'home';
+            $directory = $this->config->getDirectory();
+            if (array_key_exists($view, $directory)) {
+                require_once $directory[$view] . '.view.php';
+            } else {
+                require_once $directory['error'] . '.view.php';
+            }
+        }
+
     }
 
-    
+    $router = new Router();
+    $router->route();
+
 ?>
