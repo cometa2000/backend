@@ -128,13 +128,9 @@
     }
 }
     </style>
-</head>
-<body>
-<div class="box">
+        <div class="box">
             <div>
                 close !
             </div>
             <p><span>error 404 !</span> LO SIENTO, NO SE ENCUENTRA LA PÁGINA PARA UNA DE LAS REFORMAS. </p>
         </div>
-</body>
-</html>

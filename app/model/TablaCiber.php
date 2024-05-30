@@ -3,8 +3,8 @@
     use config\ORM;
     
 
-    class TablaAlumnos extends ORM{
-        protected $tabla = "t_alumnos";
+    class TablaCiber extends ORM{
+        protected $tabla = "t_ciber";
         protected $id_tabla = "id";
     }
 
